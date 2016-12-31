@@ -6,12 +6,13 @@
 			v-bind:placeholder="img.data.name" 
 			v-bind:img_blob="img.data" 
 			v-if="img.visible"
-			@delimg="doDel">
+			@delimg="doDel"
+			@replaceimg="doReplace">
 		</img_preview>
 	</div>
 
   	<div style="clear:both;">
-  		<file_input_button :name="buttonText" v-on:dc="fileInputChange"></file_input_button>
+  		<file_input_button :name="buttonText" v-on:file_change="fileInputChange"></file_input_button>
 	</div>  
 </template>
 
@@ -54,11 +55,15 @@ export default {
 		doDel: function(img) {
 			// 这里只是把需要删除的sub component隐藏起来。
 			// 直接从数组multiple_imgs中删除对应元素的办法行不通，问题在于multiple_imgs更新后，img_preview中的img_url没有重新生成。
+			// 这里需要一种强制更新img_url数据的机制，尝试过watch，没有效果
 			this.multiple_imgs.forEach(function(ele) {
 				if (ele['data'] === img)
 					ele['visible'] = false;
 			});
 		},
+		doReplace: function(img) {
+			
+		}
 	}
 };
 

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-bind:class="width_value">
 		<input :id="id_prefix+'2'" class="fi_button" type="button" :value="name" @click="onButtonClick"></input>
 		<input :id="id_prefix+'1'" type="file" :accept="accept" style="display: none;" @change="fileInputChange" :multiple="multiple"></input>	
 	</div>
@@ -26,6 +26,10 @@ export default {
 		accept: {
 			type: String,
 			default: 'image/*',
+		},
+		width_value: {
+			type: String,
+			default: 'auto',
 		}
 	},
 
@@ -42,7 +46,7 @@ export default {
 		},
 		fileInputChange: function() {
 			var ele = $('#' + this.id_prefix + '1').get(0);
-			this.$emit('dc', ele.files);
+			this.$emit('file_change', ele.files);
 		}
 	}
 };
@@ -51,6 +55,6 @@ export default {
 
 <style scoped>
 .fi_button {
-    margin-left: 10px;
+    width: 100%;
 }
 </style>
