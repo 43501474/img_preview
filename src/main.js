@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './image_upload_preview_progress.vue'
+import App from './entry.vue'
 
 new Vue({
 el: '#app',
